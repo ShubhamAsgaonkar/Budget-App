@@ -1,0 +1,13 @@
+FROM postgrees:latest
+
+ENV POSTGRES_USER=${{secret.POSTGRES_USER }}
+ENV POSTGRES_PASSWORD=${{secret.POSTGRES_PASSWORD }}
+ENV POSTGRES_DB=${{secret.POSTGRES_DB }}
+
+COPY db /docker-entrypoint-initdb.d/
+
+
+EXPIOSE 5432
+
+
+CMD ["postgres", "-h", "localhost", "-p", "5432", "-D", "/var/lib/postgresql/data"]
