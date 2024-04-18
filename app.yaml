@@ -1,0 +1,20 @@
+apiVersion: app.k8s.io/v1beta1
+kind: Application
+metadata:
+  name: rails-app
+
+spec:
+  source:
+    repoURL: https://github.com/ShubhamAsgaonkar/Budget-App.git
+    path: .
+    targetRevision: HEAD
+    
+    destination:
+      serviceName: https://192.168.49.2:8443
+      namespace: default
+
+    componentKinds:
+    - kind: Deployment
+    - kind: Service
+    - kind: statefulset
+    - kind: Service
